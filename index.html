@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FUTURE IQRA</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #ffffff;
+      color: #222;
+      scroll-behavior: smooth;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: #f8f8f8;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header img {
+      height: 50px;
+    }
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0a3d62;
+    }
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(to right, #dff9fb, #ffffff);
+      box-shadow: inset 0 -5px 15px rgba(0,0,0,0.05);
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #0a3d62;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+/* Add this to your <style> section */
+.slider-container {
+  display: flex;
+  justify-content: center;
+}
+
+.slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 40px 20px;
+  margin: 15px;
+  scroll-snap-type: x mandatory;
+  max-width: 1000px;
+  /* Optional: set a max width */
+}
+    .slider img {
+      flex: 0 0 auto;
+      width: 320px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      scroll-snap-align: start;
+    }
+    .slider img:hover {
+      transform: scale(1.05);
+    }
+    .classes {
+      padding: 60px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      background-color: #fdfdfd;
+    }
+    .class-card {
+      background: #ffffff;
+      padding: 30px 20px;
+      border-radius: 16px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .class-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+    .class-card h3 {
+      color: #0a3d62;
+      font-size: 1.3rem;
+    }
+    .mission {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .mission p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 1.1rem;
+      color: #444;
+    }
+    .join {
+      background: #0a3d62;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .join h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .join p {
+      max-width: 600px;
+      margin: auto;
+      font-size: 1rem;
+    }
+    .footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.4rem;
+      }
+      .hero h2 {
+        font-size: 2rem;
+      }
+      .class-card {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="/future Iqra logo.png" alt="Future Iqra Logo" />
+    <h1>FUTURE IQRA</h1>
+  </header>
+
+  <section class="hero">
+    <h2>Welcome to FUTURE IQRA</h2>
+    <p>FUTURE IQRA is a modern learning platform designed for Bihar Board (BSEB) students in both Hindi and English mediums, especially focused on Hindi medium students.</p>
+  </section>
+
+<div class="slider-container">
+  <div class="slider">
+    <img src="/slide 1.png" alt="Slide 1" />
+    <img src="/slide 2.png" alt="Slide 2" />
+  </div>
+</div>
+
+
+  <section class="classes">
+    <div onclick="window.location.href='/class9th.html'" class="class-card"><h3>Class 9</h3></div>
+    <div onclick="window.location.href='/class10th.html'" class="class-card"><h3>Class 10</h3></div>
+    <div onclick="window.location.href='/class11th.html'" class="class-card"><h3>Class 11</h3></div>
+    <div onclick="window.location.href='/class12th.html'" class="class-card"><h3>Class 12</h3></div>
+  </section>
+
+  <section class="mission">
+    <p>हमारा उद्देश्य ग्रामीण छात्रों को गुणवत्तापूर्ण शिक्षा प्रदान करना है जिसमें टेक्नोलॉजी का बेहतर उपयोग हो। FUTURE IQRA एक प्लेटफार्म है जहाँ हर विद्यार्थी को उसकी आवश्यकता अनुसार मार्गदर्शन एवं संसाधन मिलते हैं।</p>
+  </section>
+
+  <section class="join">
+    <h2>Join FUTURE IQRA Today</h2>
+    <p>Be part of a movement that empowers rural education with modern methods and community-based support.</p>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 FUTURE IQRA | All Rights Reserved | Contact: +91 7485930242</p>
+  </footer>
+
+  <script>
+    // Simple scroll animation
+    window.addEventListener("scroll", () => {
+      document.querySelectorAll(".class-card").forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (top < windowHeight - 50) {
+          card.style.transform = "translateY(0)";
+          card.style.opacity = "1";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

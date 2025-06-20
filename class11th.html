@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FUTURE IQRA - Class 11th</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #0f172a;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header img {
+      height: 40px;
+    }
+    .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-left: 1rem;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .notice {
+      background: #e0fce0;
+      padding: 1rem;
+      border-left: 6px solid #22c55e;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .card h3 {
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+    }
+    .card p {
+      color: #555;
+      font-size: 0.9rem;
+    }
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="/future Iqra logo.png" alt="Logo" />
+      <div class="title">FUTURE IQRA</div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="notice">
+      यहां FUTURE IQRA के अंतर्गत क्लास 11<sup>th</sup> के छात्रों को <strong>ऑनलाइन पढ़ाई, नोट्स, MCQ, PYQ, और क्विज़</strong> जैसे सभी संसाधन <span style="color: green">पूरी तरह से मुफ्त</span> में मिलेंगे।
+    </div>
+
+    <div class="grid">
+      <div onclick="window.location.href='/Class11thCourseSubject.html'" class="card">
+        <h3>Free Courses</h3>
+        <p>सभी विषयों के पाठ्यक्रम फ्री में उपलब्ध</p>
+      </div>
+      <div class="card">
+        <h3>Free Notes</h3>
+        <p>हाथ से बने आसान और संक्षिप्त नोट्स</p>
+      </div>
+      <div class="card">
+        <h3>Syllabus Book</h3>
+        <p>BSEB सिलेबस के अनुसार पूरी किताबें</p>
+      </div>
+      <div class="card">
+        <h3>PYQ</h3>
+        <p>पिछले वर्षों के प्रश्न-पत्र</p>
+      </div>
+      <div class="card">
+        <h3>MCQ</h3>
+        <p>प्रत्येक अध्याय से Multiple Choice Questions</p>
+      </div>
+      <div class="card">
+        <h3>Quiz</h3>
+        <p>स्व-परीक्षण के लिए ऑनलाइन क्विज़</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 FUTURE IQRA | सभी सेवाएं निःशुल्क | Powered by Students for Students
+  </footer>
+</body>
+</html>
