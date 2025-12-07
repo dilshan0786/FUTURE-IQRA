@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amrit Batch 2026 - Class 12 Biology</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #00897b; /* Teal for Biology */
+            --primary-light: #e0f2f1;
+            --secondary-color: #263238;
+            --accent-color: #ff6f00; /* Amber for highlights */
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --success: #4caf50;
+            --error: #e53935;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar / Header */
+        aside {
+            width: 280px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 2rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        aside h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-light);
+        }
+
+        aside .profile {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 1rem;
+        }
+
+        aside .profile p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        nav button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        nav button:hover, nav button.active {
+            background: var(--primary-color);
+            font-weight: 600;
+            padding-left: 1.5rem;
+        }
+
+        /* Main Content */
+        main {
+            margin-left: 280px;
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            aside {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1rem;
+            }
+            main {
+                margin-left: 0;
+                padding: 1rem;
+            }
+        }
+
+        /* Tabs Logic */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .card .eng-trans {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+            display: block;
+        }
+
+        /* MCQ Styles */
+        .options-grid {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-label:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-color);
+        }
+
+        .option-label input {
+            margin-right: 10px;
+            accent-color: var(--primary-color);
+        }
+
+        .check-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .explanation-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .explanation-box.show {
+            display: block;
+        }
+
+        .verdict {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .verdict.correct { color: var(--success); }
+        .verdict.incorrect { color: var(--error); }
+
+        .concept-note {
+            font-size: 0.95rem;
+            color: #444;
+            margin-top: 0.5rem;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        .exam-tip {
+            background: #fff8e1;
+            color: #856404;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .exam-tip::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+
+        /* Diagram Placeholder */
+        .diagram-placeholder {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;     /* ताकि div के बाहर न जाए */
+    text-align: center;
+}
+
+.diagram-placeholder img {
+    max-width: 100%;      /* image को div के अंदर फिट कर देगा */
+    height: auto;         /* proportion ठीक रहेगा */
+    display: block;
+    margin: 0 auto;
+}
+
+        .diagram-placeholder {
+            border: 2px dashed var(--primary-color);
+            background: var(--primary-light);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: var(--secondary-color);
+        }
+        .diagram-prompt {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        /* Long Answer Styling */
+        .long-answer h4 {
+            color: var(--primary-color);
+            margin-top: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.2rem;
+        }
+        .long-answer ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="profile">
+            <h2>Amrit Batch 2026</h2>
+            <p><strong>Channel:</strong> Future Iqra</p>
+            <p><strong>Instructor:</strong> Dilshan Alam</p>
+            <p><strong>Class:</strong> 12th Biology (Bihar Board)</p>
+            <p><strong>Medium:</strong> Hindi</p>
+        </div>
+        <nav>
+            <button class="active" onclick="switchTab('mcq')">MCQ (Objective)</button>
+            <button onclick="switchTab('short')">Short Q&A (लघु उत्तरीय)</button>
+            <button onclick="switchTab('long')">Long Q&A (दीर्घ उत्तरीय)</button>
+            <button onclick="switchTab('notes')">Revision Notes</button>
+        </nav>
+    </aside>
+
+    <main>
+        
+        <section id="mcq" class="tab-content active">
+            <h1 style="margin-bottom: 1.5rem; border-bottom: 2px solid var(--primary-color); display:inline-block;">Objective Type Questions (MCQ)</h1>
+            <p style="margin-bottom: 1rem; color: #666;">हर प्रश्न के विकल्पों (options) को ध्यान से पढ़ें और सही उत्तर चुनें। Explanation से अपना कांसेप्ट क्लियर करें।</p>
+
+            <div class="card" id="q1">
+                <h3>1. निम्नलिखित में से कौन पौधों में कायिक (वानस्पतिक) प्रसार के लिए उत्तरदायी नहीं है?</h3>
+                <span class="eng-trans">Which of the following is NOT responsible for vegetative propagation in plants?</span>
+                
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q1" value="A"> (क) भूस्तारिका (Runner)</label>
+                    <label class="option-label"><input type="radio" name="q1" value="B"> (ख) शल्क कंद (Bulb)</label>
+                    <label class="option-label"><input type="radio" name="q1" value="C"> (ग) प्रकन्द (Rhizome)</label>
+                    <label class="option-label"><input type="radio" name="q1" value="D"> (घ) मुकुलक (Gemmules)</label>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q1', 'D')">Check Answer</button>
+
+                <div class="explanation-box">
+                    <div class="verdict-D verdict correct">✅ सही उत्तर: (घ) मुकुलक (Gemmules)</div>
+                    <div class="concept-note">
+                        <strong>Concept:</strong>
+                        <ul>
+                            <li><strong>(क) भूस्तारिका (Runner):</strong> यह पौधों (जैसे घास) में तने का रूपांतरण है जो कायिक जनन करता है। (Correct structure for plants).</li>
+                            <li><strong>(ख) शल्क कंद (Bulb):</strong> जैसे प्याज (Onion) में, यह भी एक तना है जो जनन में मदद करता है।</li>
+                            <li><strong>(ग) प्रकन्द (Rhizome):</strong> जैसे अदरक (Ginger) में, यह भी कायिक प्रवर्धन की इकाई है।</li>
+                            <li><strong>(घ) मुकुलक (Gemmules):</strong> यह <strong>स्पंज (Sponges)</strong> में पाया जाने वाला अलैंगिक जनन (Asexual reproduction) का तरीका है, पौधों में नहीं।</li>
+                        </ul>
+                    </div>
+                    <div class="exam-tip">
+                        Exam Tip: याद रखें 'Gemmules' शब्द हमेशा 'Sponges' (Animal kingdom) से जुड़ा है, Plants से नहीं।
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="q2">
+                <h3>2. निम्नलिखित में से कौन-सा कथन असत्य है?</h3>
+                <span class="eng-trans">Which of the following statements is FALSE?</span>
+                
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q2" value="A"> (क) मारकेन्श्यिा के मादा थैलस के एंथेरिडिओफोर पर एंथेरिडिया रहते हैं</label>
+                    <label class="option-label"><input type="radio" name="q2" value="B"> (ख) कारा उभयलिंगाश्रयी है</label>
+                    <label class="option-label"><input type="radio" name="q2" value="C"> (ग) द्विगुणित जीन, अर्द्धसूत्री विभाजन के बाद युग्मक बनाते हैं</label>
+                    <label class="option-label"><input type="radio" name="q2" value="D"> (घ) क्लैमाइडोमोनस में अलैंगिक चल बीजाणु बनते हैं</label>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q2', 'A')">Check Answer</button>
+
+                <div class="explanation-box">
+                    <div class="verdict-A verdict correct">✅ सही उत्तर: (क) (यह कथन गलत/असत्य है)</div>
+                    <div class="concept-note">
+                        <strong>Concept:</strong>
+                        <ul>
+                            <li><strong>(क) विश्लेषण:</strong> एंथेरिडिया (Antheridia) नर जननांग है। यह 'नर थैलस' (Male thallus) पर होता है, मादा थैलस पर नहीं। इसलिए यह कथन गलत है।</li>
+                            <li><strong>(ख) कारा (Chara):</strong> यह एक शैवाल है जो प्रायः उभयलिंगाश्रयी (Monoecious) होता है (नर और मादा अंग एक ही पौधे पर)।</li>
+                            <li><strong>(ग) युग्मक निर्माण:</strong> द्विगुणित (Diploid) जीवों में अर्द्धसूत्री विभाजन (Meiosis) से ही अगुणित युग्मक (Haploid gametes) बनते हैं। (सही कथन)।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="q3">
+                <h3>3. निम्नलिखित में से किस पौधे को 'बंगाल का आतंक' कहा जाता है?</h3>
+                <span class="eng-trans">Which of the following plants is called the 'Terror of Bengal'?</span>
+                
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q3" value="A"> (क) जलकुम्भी (Water Hyacinth)</label>
+                    <label class="option-label"><input type="radio" name="q3" value="B"> (ख) बाँस (Bamboo)</label>
+                    <label class="option-label"><input type="radio" name="q3" value="C"> (ग) लैण्टाना (Lantana)</label>
+                    <label class="option-label"><input type="radio" name="q3" value="D"> (घ) पारथेनियम (Parthenium)</label>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q3', 'A')">Check Answer</button>
+
+                <div class="explanation-box">
+                    <div class="verdict-A verdict correct">✅ सही उत्तर: (क) जलकुम्भी (Water Hyacinth)</div>
+                    <div class="concept-note">
+                        <strong>Concept:</strong>
+                        जलकुम्भी (Eichhornia) रुके हुए पानी में बहुत तेजी से बढ़ती है और पानी से ऑक्सीजन खींच लेती है, जिससे मछलियाँ मर जाती हैं। इसे इसके सुंदर फूलों के लिए भारत लाया गया था, लेकिन यह मुसीबत बन गया।
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="q4">
+                <h3>4. निम्नलिखित में से कौन लघु बीजाणुधानी का हिस्सा नहीं है?</h3>
+                <span class="eng-trans">Which of the following is NOT a part of the microsporangium?</span>
+                
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q4" value="A"> (क) अंतस्थीसियम (Endothecium)</label>
+                    <label class="option-label"><input type="radio" name="q4" value="B"> (ख) टेपीटम (Tapetum)</label>
+                    <label class="option-label"><input type="radio" name="q4" value="C"> (ग) बाह्य-त्वचा (Epidermis)</label>
+                    <label class="option-label"><input type="radio" name="q4" value="D"> (घ) बीजांड द्वार (Micropyle)</label>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q4', 'D')">Check Answer</button>
+
+                <div class="explanation-box">
+                    <div class="verdict-D verdict correct">✅ सही उत्तर: (घ) बीजांड द्वार (Micropyle)</div>
+                    <div class="concept-note">
+                        <strong>Concept:</strong>
+                        <ul>
+                            <li><strong>लघु बीजाणुधानी (Microsporangium/Anther) की परतें:</strong> बाह्य त्वचा (Epidermis), अंतस्थीसियम (Endothecium), मध्य परत (Middle layers), और टेपीटम (Tapetum)।</li>
+                            <li><strong>बीजांड द्वार (Micropyle):</strong> यह बीजांड (Ovule/Megasporangium) का हिस्सा है, जहाँ से पराग नलिका प्रवेश करती है। यह नर भाग (Anther) का हिस्सा नहीं है।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="q5">
+                <h3>5. निम्नलिखित में से कौन अंड-समुच्चय से नहीं जुड़ा है?</h3>
+                <span class="eng-trans">Which of the following is NOT associated with the Egg Apparatus?</span>
+                
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q5" value="A"> (क) सहाय कोशिका (Synergids)</label>
+                    <label class="option-label"><input type="radio" name="q5" value="B"> (ख) अंड (Egg)</label>
+                    <label class="option-label"><input type="radio" name="q5" value="C"> (ग) प्रतिव्यासांत कोशिका (Antipodal cells)</label>
+                    <label class="option-label"><input type="radio" name="q5" value="D"> (घ) तंतुरूप समुच्चय (Filiform Apparatus)</label>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q5', 'C')">Check Answer</button>
+
+                <div class="explanation-box">
+                    <div class="verdict-C verdict correct">✅ सही उत्तर: (ग) प्रतिव्यासांत कोशिका (Antipodal cells)</div>
+                    <div class="concept-note">
+                        <strong>Concept:</strong>
+                        <ul>
+                            <li><strong>अंड-समुच्चय (Egg Apparatus):</strong> यह बीजांड (Ovule) के बीजांड द्वार (Micropylar end) की तरफ होता है। इसमें <strong>1 अंड कोशिका (Egg)</strong> और <strong>2 सहाय कोशिकाएं (Synergids)</strong> होती हैं।</li>
+                            <li><strong>तंतुरूप समुच्चय (Filiform Apparatus):</strong> यह सहाय कोशिकाओं में होता है।</li>
+                            <li><strong>प्रतिव्यासांत कोशिका (Antipodals):</strong> यह 'निभाग' (Chalazal end) की तरफ होती हैं, अंड-समुच्चय से अलग।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="q6">
+                <h3>6. घास के बीज में प्रशल्क (स्कुटेलम) को क्या कहते हैं?</h3>
+                <span class="eng-trans">What is the scutellum called in a grass seed?</span>
+                
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q6" value="A"> (क) भ्रूणपोष (Endosperm)</label>
+                    <label class="option-label"><input type="radio" name="q6" value="B"> (ख) बीजपत्र (Cotyledon)</label>
+                    <label class="option-label"><input type="radio" name="q6" value="C"> (ग) बीज आवरण (Seed coat)</label>
+                    <label class="option-label"><input type="radio" name="q6" value="D"> (घ) भ्रूणीय अक्ष (Embryonal axis)</label>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q6', 'B')">Check Answer</button>
+
+                <div class="explanation-box">
+                    <div class="verdict-B verdict correct">✅ सही उत्तर: (ख) बीजपत्र (Cotyledon)</div>
+                    <div class="concept-note">
+                        <strong>Concept:</strong>
+                        एकबीजपत्री (Monocots) जैसे घास परिवार में, बीजपत्र (Cotyledon) ढाल के आकार का होता है और इसे ही <strong>स्कुटेलम (Scutellum)</strong> कहते हैं।
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="q7">
+                <h3>7. पुष्पीय पौधों में नए युग्मक का निर्माण किसके विभाजन से होता है?</h3>
+                <span class="eng-trans">In flowering plants, male gametes are formed by the division of which cell?</span>
+                
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q7" value="A"> (क) कायिक कोशिका (Vegetative cell)</label>
+                    <label class="option-label"><input type="radio" name="q7" value="B"> (ख) लघुबीजाणु (Microspore)</label>
+                    <label class="option-label"><input type="radio" name="q7" value="C"> (ग) जनन कोशिका (Generative cell)</label>
+                    <label class="option-label"><input type="radio" name="q7" value="D"> (घ) लघुबीजाणु मातृ कोशिका (Microspore mother cell)</label>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q7', 'C')">Check Answer</button>
+
+                <div class="explanation-box">
+                    <div class="verdict-C verdict correct">✅ सही उत्तर: (ग) जनन कोशिका (Generative cell)</div>
+                    <div class="concept-note">
+                        <strong>Concept:</strong>
+                        परागकण (Pollen grain) के अंदर दो कोशिकाएं होती हैं:
+                        <ol>
+                            <li><strong>कायिक कोशिका (Vegetative):</strong> बड़ी होती है, भोजन संग्रह करती है।</li>
+                            <li><strong>जनन कोशिका (Generative):</strong> छोटी होती है। यही समसूत्री विभाजन (Mitosis) करके <strong>2 नर युग्मक (Male gametes)</strong> बनाती है।</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="q8">
+                <h3>8. सगर्भता के कितने माह के बाद, भ्रूण के पाद एवं अंगुलियाँ विकसित होती हैं?</h3>
+                <span class="eng-trans">After how many months of pregnancy do the limbs and digits of the fetus develop?</span>
+                
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q8" value="A"> (क) 2 माह (2 months)</label>
+                    <label class="option-label"><input type="radio" name="q8" value="B"> (ख) 3 माह (3 months)</label>
+                    <label class="option-label"><input type="radio" name="q8" value="C"> (ग) 1 माह (1 month)</label>
+                    <label class="option-label"><input type="radio" name="q8" value="D"> (घ) 6 माह (6 months)</label>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q8', 'A')">Check Answer</button>
+
+                <div class="explanation-box">
+                    <div class="verdict-A verdict correct">✅ सही उत्तर: (क) 2 माह (2 months)</div>
+                    <div class="concept-note">
+                        <strong>Concept:</strong>
+                        <ul>
+                            <li><strong>1 माह बाद:</strong> हृदय (Heart) बनता है।</li>
+                            <li><strong>2 माह के अंत तक:</strong> पाद (Limbs) और अंगुलियाँ (Digits) विकसित हो जाती हैं।</li>
+                            <li><strong>3 माह (पहली तिमाही):</strong> प्रमुख अंग तंत्र बन जाते हैं।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="q9">
+                <h3>9. निम्नलिखित में से कौन भारी मात्रा में प्रोजेस्टेरॉन स्त्रावित करता है?</h3>
+                <span class="eng-trans">Which of the following secretes a large amount of Progesterone?</span>
+                
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q9" value="A"> (क) ग्राफी पुटक (Graafian follicle)</label>
+                    <label class="option-label"><input type="radio" name="q9" value="B"> (ख) श्वेत पिंड (Corpus Albicans)</label>
+                    <label class="option-label"><input type="radio" name="q9" value="C"> (ग) पीत पिंड (Corpus Luteum)</label>
+                    <label class="option-label"><input type="radio" name="q9" value="D"> (घ) प्राथमिक पुटक (Primary follicle)</label>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q9', 'C')">Check Answer</button>
+
+                <div class="explanation-box">
+                    <div class="verdict-C verdict correct">✅ सही उत्तर: (ग) पीत पिंड (Corpus Luteum)</div>
+                    <div class="concept-note">
+                        <strong>Concept:</strong>
+                        अंडोत्सर्ग (Ovulation) के बाद, ग्राफी पुटक फटकर <strong>पीत पिंड (Corpus Luteum)</strong> में बदल जाता है। यह गर्भावस्था बनाए रखने के लिए भारी मात्रा में <strong>प्रोजेस्टेरॉन (Progesterone)</strong> हार्मोन छोड़ता है।
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="q10">
+                <h3>10. अण्डोत्सर्ग के पश्चात अंडाणु किस कोशिका समूह से घिरा होता है?</h3>
+                <span class="eng-trans">After ovulation, the egg is surrounded by which cell group?</span>
+                
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q10" value="A"> (क) अरीय किरीट (कोरोना रेडियटा/Corona Radiata)</label>
+                    <label class="option-label"><input type="radio" name="q10" value="B"> (ख) जोना पेल्यूसिडा (Zona Pellucida)</label>
+                    <label class="option-label"><input type="radio" name="q10" value="C"> (ग) कणिकामय कोशिकाएँ (Granulosa cells)</label>
+                    <label class="option-label"><input type="radio" name="q10" value="D"> (घ) प्रावरक स्तर (थीका लेयर/Theca layer)</label>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q10', 'A')">Check Answer</button>
+
+                <div class="explanation-box">
+                    <div class="verdict-A verdict correct">✅ सही उत्तर: (क) अरीय किरीट (कोरोना रेडियटा)</div>
+                    <div class="concept-note">
+                        <strong>Concept:</strong>
+                        अंडोत्सर्ग के समय द्वितीयक अंडक (Secondary Oocyte) बाहर आता है, तो वह 'अरीय किरीट' (Corona Radiata) नामक कोशिकाओं की परत से घिरा होता है। जोना पेल्यूसिडा इसके अंदर की परत होती है।
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="short" class="tab-content">
+            <h1 style="margin-bottom: 1.5rem; border-bottom: 2px solid var(--primary-color);">Short Answer Questions (लघु उत्तरीय प्रश्न)</h1>
+
+            <div class="card">
+                <h3>Q.20. मानव वंशावली विश्लेषण में नर, मादा, मैथुन एवं समरक्त मैथुन के लिए प्रयुक्त प्रतीक को बनायें।</h3>
+                <span class="eng-trans">Draw the symbols used for Male, Female, Mating, and Consanguineous mating in human pedigree analysis.</span>
+                
+                <div class="long-answer">
+                    <p>वंशावली विश्लेषण (Pedigree Analysis) में निम्नलिखित प्रतीकों का उपयोग किया जाता है:</p>
+                    
+                    <div class="diagram-placeholder">
+                     <img src="/Class 12th/Amrit Batch/Class 1/4 symbols specifically.jpg" alt="" />   <p><strong>[Diagram Prompt]</strong></p>
+                        <p>Draw these 4 symbols specifically:</p>
+                        <ul style="text-align: left; display: inline-block;">
+                            <li><strong>नर (Male):</strong> एक वर्ग (Square) ☐ बनायें।</li>
+                            <li><strong>मादा (Female):</strong> एक वृत्त (Circle) ◯ बनायें।</li>
+                            <li><strong>मैथुन (Mating):</strong> एक वर्ग और एक वृत्त के बीच एक क्षैतिज रेखा (Horizontal line) —।</li>
+                            <li><strong>समरक्त मैथुन (Consanguineous Mating):</strong> रिश्तेदारों के बीच शादी। इसके लिए वर्ग और वृत्त के बीच दो क्षैतिज रेखाएं (Double lines) = बनायें।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Q.8. प्लाज्मिड pBR 322 की संरचना दर्शाएँ।</h3>
+                <span class="eng-trans">Show the structure of Plasmid pBR322.</span>
+                
+                <div class="long-answer">
+                    <p><strong>उत्तर:</strong> pBR322 सबसे पहले बनाया गया कृत्रिम क्लोनिंग संवाहक (Artificial Cloning Vector) है।</p>
+                    <p><strong>मुख्य घटक:</strong></p>
+                    <ul>
+                        <li><strong>ori:</strong> प्रतिकृति का मूल (Origin of replication)।</li>
+                        <li><strong>rop:</strong> यह प्लाज्मिड के प्रोटीन को कोड करता है।</li>
+                        <li><strong>प्रतिजैविक प्रतिरोधी जीन (Antibiotic Resistance Genes):</strong> दो होते हैं - 
+                            <br>1. एम्पिसिलीन प्रतिरोधी (Amp<sup>R</sup>)
+                            <br>2. टेट्रासाइक्लिन प्रतिरोधी (Tet<sup>R</sup>)
+                        </li>
+                        <li><strong>प्रतिबंधन स्थल (Restriction Sites):</strong> EcoRI, BamHI, ClaI, HindIII, PstI, SalI, PvuI, PvuII.</li>
+                    </ul>
+
+                    <div class="diagram-placeholder">
+                       <img src="/Class 12th/Amrit Batch/Class 1/pBR322.jpg" alt="" /> <p><strong>[Diagram Prompt]</strong></p>
+                        <p>Draw a circular DNA map labeled 'pBR322'. Mark the following:</p>
+                        <ul style="text-align:left; display:inline-block;">
+                            <li><strong>Amp<sup>R</sup> gene:</strong> (Left side) with PstI, PvuI sites.</li>
+                            <li><strong>Tet<sup>R</sup> gene:</strong> (Right side) with BamHI, SalI sites.</li>
+                            <li><strong>ori:</strong> Bottom part.</li>
+                            <li><strong>rop:</strong> Near ori.</li>
+                            <li><strong>EcoRI, HindIII:</strong> Top part.</li>
+                        </ul>
+                        <p style="margin-top:10px; font-size:0.8rem;">(Use different color pens for Genes and Enzymes)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Q.14. पुंकेसर (stamen) तथा स्त्रीकेसर (pistil) को नामांकित चित्र द्वारा परिभाषित करें।</h3>
+                <span class="eng-trans">Define Stamen and Pistil with labeled diagrams.</span>
+                
+                <div class="long-answer">
+                    <h4>1. पुंकेसर (Stamen):</h4>
+                    <p>यह पुष्प का <strong>नर जननांग (Male Reproductive Organ)</strong> है। इसके दो मुख्य भाग होते हैं:</p>
+                    <ul>
+                        <li><strong>परागकोष (Anther):</strong> शीर्ष पर स्थित, इसमें परागकण बनते हैं।</li>
+                        <li><strong>पुतन्तु (Filament):</strong> लंबा डंठल जो परागकोष को पुष्प से जोड़ता है।</li>
+                    </ul>
+
+                    <div class="diagram-placeholder">
+                       <img src="/Class 12th/Amrit Batch/Class 1/stamen.jpg" alt="" /> <p><strong>[Diagram: Stamen]</strong></p>
+                        <p>Draw a stalk (Filament) with a bilobed head (Anther). Label: Anther, Filament.</p>
+                    </div>
+
+                    <h4>2. स्त्रीकेसर (Pistil/Carpel):</h4>
+                    <p>यह पुष्प का <strong>मादा जननांग (Female Reproductive Organ)</strong> है। इसके तीन भाग होते हैं:</p>
+                    <ul>
+                        <li><strong>वर्तिकाग्र (Stigma):</strong> सबसे ऊपर का भाग जो परागकण ग्रहण करता है।</li>
+                        <li><strong>वर्तिका (Style):</strong> बीच का नली जैसा भाग।</li>
+                        <li><strong>अंडाशय (Ovary):</strong> सबसे नीचे का फूला हुआ भाग जिसमें बीजांड (Ovule) होते हैं।</li>
+                    </ul>
+
+                    <div class="diagram-placeholder">
+                       <img src="/Class 12th/Amrit Batch/Class 1/Pistil.jpg" alt="" /> <p><strong>[Diagram: Pistil]</strong></p>
+                        <p>Draw a flask-shaped structure. Label (Top to Bottom): Stigma, Style, Ovary, Thalamus.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Q.15. निम्नांकित को केवल नामांकित चित्र द्वारा दर्शाये- (a) जीवाणु कोशिका में द्विविखण्डन (b) समसूत्री कोशिका विभाजन की मेटाफेज अवस्था।</h3>
+                <span class="eng-trans">Show with labeled diagram only: (a) Binary Fission in Bacteria (b) Metaphase of Mitosis.</span>
+                
+                <div class="long-answer">
+                    <h4>(a) जीवाणु में द्विविखण्डन (Binary Fission in Bacteria):</h4>
+                    <p>जीवाणु (Bacteria) अलैंगिक जनन करते हैं जिसमें एक कोशिका दो समान पुत्री कोशिकाओं में बंट जाती है।</p>
+                    <div class="diagram-placeholder">
+                      <img src="/Class 12th/Amrit Batch/Class 1/bacteria.jpg" alt="" />  <p><strong>[Diagram A]</strong></p>
+                        <p>Draw 3 steps:</p>
+                        1. Parent Cell (Label DNA/Nucleoid).<br>
+                        2. DNA Replication & Constriction (Cell wall bending inwards).<br>
+                        3. Two Daughter Cells separating.
+                    </div>
+
+                    <h4>(b) मेटाफेज अवस्था (Metaphase):</h4>
+                    <p>इस अवस्था में गुणसूत्र (Chromosomes) कोशिका के मध्य (Equator) में एक पंक्ति में आ जाते हैं।</p>
+                    <div class="diagram-placeholder">
+                      <img src="/Class 12th/Amrit Batch/Class 1/Metaphase.jpg" alt="" />  <p><strong>[Diagram B]</strong></p>
+                        <p>Draw a cell with spindle fibers.</p>
+                        <ul>
+                            <li>Chromosomes aligned at the center (Metaphase plate).</li>
+                            <li>Spindle fibers attached to centromeres.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Q.34. मानव अंडाशय के अनुप्रस्थ काट का स्वच्छ एवं नामांकित चित्र बनाएँ।</h3>
+                <span class="eng-trans">Draw a neat and labeled diagram of T.S. of Human Ovary.</span>
+                
+                <div class="long-answer">
+                    <p><strong>विवरण:</strong> अंडाशय (Ovary) में अंडाणु (Ovum) विभिन्न विकास चरणों में होते हैं।</p>
+                    <div class="diagram-placeholder">
+                       <img src="/Class 12th/Amrit Batch/Class 1/T.S. of Ovary.jpg" alt="" /> <p><strong>[Diagram Prompt: T.S. of Ovary]</strong></p>
+                        <p>Draw an oval shape containing these structures in clockwise order:</p>
+                        <ul>
+                            <li><strong>प्राथमिक पुटक (Primary Follicle):</strong> Small circles.</li>
+                            <li><strong>तृतीयक पुटक (Tertiary Follicle):</strong> Showing a cavity (Antrum).</li>
+                            <li><strong>ग्राफी पुटक (Graafian Follicle):</strong> Large mature follicle with Ovum inside.</li>
+                            <li><strong>अण्डोत्सर्ग (Ovulation):</strong> Ruptured follicle releasing egg.</li>
+                            <li><strong>पीत पिंड (Corpus Luteum):</strong> Yellowish body.</li>
+                            <li>Blood vessels in the center.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="long" class="tab-content">
+            <h1 style="margin-bottom: 1.5rem; border-bottom: 2px solid var(--primary-color);">Long Answer Questions (दीर्घ उत्तरीय प्रश्न)</h1>
+
+            <div class="card">
+                <h3>Q.35. सूक्ष्म प्रवर्धन (Micro-propagation) क्या है? इस विधि द्वारा पादपों के उत्पादन के मुख्य लाभ क्या हैं?</h3>
+                <span class="eng-trans">What is Micro-propagation? What are the main benefits of producing plants by this method?</span>
+                
+                <div class="long-answer">
+                    <h4>परिभाषा (Definition):</h4>
+                    <p>ऊतक संवर्धन (Tissue Culture) तकनीक द्वारा प्रयोगशाला में किसी पौधे के छोटे से भाग (Explant) से हजारों की संख्या में नए पौधे तैयार करने की विधि को <strong>सूक्ष्म प्रवर्धन (Micro-propagation)</strong> कहते हैं।</p>
+                    <p>इस विधि से बने पौधे आनुवंशिक रूप से अपने जनक पौधे के बिल्कुल समान होते हैं, जिन्हें <strong>सोमाक्लोन (Somaclones)</strong> कहा जाता है।</p>
+
+                    <h4>मुख्य लाभ (Main Benefits):</h4>
+                    <ul>
+                        <li><strong>1. त्वरित गुणन (Rapid Multiplication):</strong> बहुत कम समय में एक छोटे से ऊतक से हजारों पौधे तैयार किए जा सकते हैं।</li>
+                        <li><strong>2. रोग-मुक्त पौधे (Disease-Free Plants):</strong> यदि कोई पौधा वायरस से ग्रस्त है, तो भी उसके <strong>विभज्योतक (Meristem - शीर्ष भाग)</strong> का उपयोग करके वायरस-मुक्त स्वस्थ पौधे उगाए जा सकते हैं। (उदाहरण: आलू, गन्ना, केला)।</li>
+                        <li><strong>3. वर्ष भर उत्पादन:</strong> मौसम पर निर्भर रहे बिना साल भर पौधे उगाए जा सकते हैं।</li>
+                        <li><strong>4. कम जगह:</strong> बहुत कम जगह में बड़ी संख्या में पौधे तैयार किए जा सकते हैं।</li>
+                        <li><strong>5. विलुप्त होती प्रजातियां:</strong> दुर्लभ या विलुप्तप्राय पौधों को बचाने के लिए यह विधि बहुत उपयोगी है।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Q.4. (a) वॉटसन तथा क्रिक द्वारा प्रस्तावित डीएनए की संरचना; (b) मेसेल्सन एवं स्टाल का प्रयोग।</h3>
+                <span class="eng-trans">Describe: (a) Structure of DNA proposed by Watson & Crick; (b) Meselson and Stahl's experiment.</span>
+                
+                <div class="long-answer">
+                    <h4>(a) डीएनए की संरचना (Watson & Crick Model, 1953):</h4>
+                    <p>वॉटसन और क्रिक ने DNA का <strong>द्विकुंडलित मॉडल (Double Helix Model)</strong> प्रस्तुत किया। इसके मुख्य बिंदु हैं:</p>
+                    <ul>
+                        <li><strong>दो रज्जुक (Two Strands):</strong> DNA दो पॉलीन्यूक्लियोटाइड चेन का बना होता है।</li>
+                        <li><strong>आधार (Backbone):</strong> इसका आधार शर्करा (Sugar) और फॉस्फेट (Phosphate) का बना होता है, जबकि नाइट्रोजन क्षार (Bases) अंदर की ओर होते हैं।</li>
+                        <li><strong>प्रति-समानांतर (Anti-parallel):</strong> दोनों चेन विपरीत दिशा में होती हैं। एक \(5' \to 3'\) तो दूसरी \(3' \to 5'\) दिशा में।</li>
+                        <li><strong>पूरक क्षार (Base Pairing):</strong>
+                            <br> - एडिनीन (A) हमेशा थायमीन (T) के साथ <strong>2 हाइड्रोजन बंध</strong> \((A=T)\) से जुड़ता है।
+                            <br> - गुआनीन (G) हमेशा साइटोसीन (C) के साथ <strong>3 हाइड्रोजन बंध</strong> \((G \equiv C)\) से जुड़ता है।
+                        </li>
+                        <li><strong>कुंडल (Helix):</strong> यह दाईं ओर (Right-handed) मुड़ा होता है। एक घुमाव (Pitch) की लंबाई 3.4 nm (34 Å) होती है और इसमें 10 बेस पेयर होते हैं।</li>
+                    </ul>
+                    <div class="diagram-placeholder">
+                      <img src="/Class 12th/Amrit Batch/Class 1/Dna double helix.png" alt="" />
+                    </div>
+
+                    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ccc;">
+
+                    <h4>(b) मेसेल्सन एवं स्टाल का प्रयोग (Meselson & Stahl Experiment):</h4>
+                    <p>इस प्रयोग ने सिद्ध किया कि <strong>DNA का प्रतिकृतियन अर्द्ध-संरक्षी (Semi-conservative)</strong> होता है।</p>
+                    <p><strong>प्रयोग के चरण:</strong></p>
+                    <ol>
+                        <li>उन्होंने <em>E. coli</em> जीवाणु को भारी नाइट्रोजन \(^{15}N\) वाले माध्यम में कई पीढ़ियों तक उगाया, जिससे DNA भारी हो गया।</li>
+                        <li>फिर उन्हें सामान्य नाइट्रोजन \(^{14}N\) वाले माध्यम में स्थानांतरित किया।</li>
+                        <li><strong>परिणाम:</strong>
+                            <ul>
+                                <li><strong>पहली पीढ़ी (20 मिनट बाद):</strong> प्राप्त DNA का घनत्व मध्यम (Hybrid) था (एक रज्जुक \(^{15}N\), एक \(^{14}N\))।</li>
+                                <li><strong>दूसरी पीढ़ी (40 मिनट बाद):</strong> आधे DNA हाइब्रिड थे और आधे हल्के (\(^{14}N\) वाले)।</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p><strong>निष्कर्ष:</strong> इससे साबित हुआ कि DNA बनते समय एक रज्जुक पुराना (Parental) होता है और एक नया बनता है।</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Q.15. पुष्पीय पौधों में निषेचन की क्रिया का वर्णन करें।</h3>
+                <span class="eng-trans">Describe the process of fertilization in flowering plants.</span>
+                
+                <div class="long-answer">
+                    <p>पुष्पीय पौधों (Angiosperms) में <strong>दोहरा निषेचन (Double Fertilization)</strong> होता है। यह एक जटिल प्रक्रिया है जिसके मुख्य चरण निम्न हैं:</p>
+                    
+                    <h4>1. परागकण का अंकुरण (Germination of Pollen):</h4>
+                    <p>जब परागकण वर्तिकाग्र (Stigma) पर गिरता है, तो वह पोषक तत्व सोखकर फूल जाता है और <strong>पराग नलिका (Pollen Tube)</strong> विकसित करता है।</p>
+
+                    <h4>2. पराग नलिका का प्रवेश (Entry of Pollen Tube):</h4>
+                    <p>पराग नलिका वर्तिका (Style) से होती हुई बीजांड (Ovule) तक पहुँचती है और बीजांड द्वार (Micropyle) से भ्रूणकोष (Embryo sac) में प्रवेश करती है।</p>
+
+                    <h4>3. युग्मकों का मुक्त होना (Release of Gametes):</h4>
+                    <p>पराग नलिका भ्रूणकोष में जाकर फट जाती है और <strong>दो नर युग्मक (Male Gametes)</strong> छोड़ती है।</p>
+
+                    <h4>4. दोहरा निषेचन (Double Fertilization):</h4>
+                    <ul>
+                        <li><strong>प्रथम निषेचन (सत्य निषेचन/Syngamy):</strong> पहला नर युग्मक अंड कोशिका (Egg cell) से मिलता है।
+                            <br><em>नर युग्मक (n) + अंड (n) → युग्मनज (Zygote, 2n)</em>
+                            <br>→ इससे आगे चलकर <strong>भ्रूण (Embryo)</strong> बनता है।
+                        </li>
+                        <li><strong>द्वितीय निषेचन (त्रिक संलयन/Triple Fusion):</strong> दूसरा नर युग्मक, मध्य में स्थित दो ध्रुवीय केंद्रकों (Polar nuclei) से मिलता है।
+                            <br><em>नर युग्मक (n) + 2 ध्रुवीय केंद्रक (n+n) → प्राथमिक भ्रूणपोष केंद्रक (PEN, 3n)</em>
+                            <br>→ इससे आगे चलकर <strong>भ्रूणपोष (Endosperm)</strong> बनता है जो भ्रूण को पोषण देता है।
+                        </li>
+                    </ul>
+
+                    <div class="diagram-placeholder">
+                       <img src="/Class 12th/Amrit Batch/Class 1/Fertilization in Plant.jpg" alt="" /> <p><strong>[Diagram: Fertilization in Plant]</strong></p>
+                        <p>Draw a Longitudinal Section of a flower carpel.</p>
+                        <ul>
+                            <li>Show Pollen grain on Stigma.</li>
+                            <li>Show Pollen tube growing through Style reaching Ovule.</li>
+                            <li>Show Pollen tube entering Micropyle.</li>
+                            <li>Label: Pollen tube, Male gametes, Egg cell, Polar nuclei.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="notes" class="tab-content">
+            <h1 style="margin-bottom: 1.5rem; border-bottom: 2px solid var(--primary-color);">Revision Notes (महत्वपूर्ण बिंदु)</h1>
+            <div class="card">
+                <h3>Exam के लिए Quick Revision Points</h3>
+                <ul style="line-height: 2; margin-left: 20px;">
+                    <li><strong>Gemmules:</strong> ये स्पंज (Sponges) में बनते हैं, पौधों में नहीं।</li>
+                    <li><strong>Water Hyacinth (जलकुम्भी):</strong> इसे 'बंगाल का आतंक' (Terror of Bengal) कहते हैं क्योंकि यह रुके हुए पानी से ऑक्सीजन खींच लेती है।</li>
+                    <li><strong>जनन कोशिका (Generative Cell):</strong> परागकण की यह कोशिका विभाजित होकर 2 नर युग्मक बनाती है।</li>
+                    <li><strong>कॉर्पस ल्यूटियम (Corpus Luteum):</strong> यह अंडाशय में बनता है और गर्भावस्था बनाए रखने के लिए <strong>प्रोजेस्टेरॉन</strong> हार्मोन स्रावित करता है।</li>
+                    <li><strong>pBR322:</strong> यह एक E. coli क्लोनिंग वेक्टर है जिसमें Ampicillin और Tetracycline प्रतिरोधी जीन होते हैं।</li>
+                    <li><strong>दोहरा निषेचन (Double Fertilization):</strong> आवृतबीजी (Angiosperms) का विशिष्ट लक्षण है। इसमें Syngamy और Triple Fusion दोनों होते हैं।</li>
+                    <li><strong>DNA मॉडल:</strong> वाटसन और क्रिक ने 1953 में दिया। A=T (2 बांड) और G≡C (3 बांड)।</li>
+                    <li><strong>सूक्ष्म प्रवर्धन (Micropropagation):</strong> वायरस-मुक्त पौधे उगाने का सबसे अच्छा तरीका (विभज्योतक संवर्धन द्वारा)।</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // Show selected content
+            document.getElementById(tabId).classList.add('active');
+
+            // Update Sidebar Buttons
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // MCQ Checking Logic
+        function checkAnswer(questionId, correctOption) {
+            const card = document.getElementById(questionId);
+            const selected = card.querySelector(`input[name="${questionId}"]:checked`);
+            const explanation = card.querySelector('.explanation-box');
+            
+            if (!selected) {
+                alert("कृपया पहले एक विकल्प चुनें (Please select an option first).");
+                return;
+            }
+
+            // Show explanation
+            explanation.classList.add('show');
+
+            // Visual Feedback on Radio Labels
+            const labels = card.querySelectorAll('.option-label');
+            labels.forEach(label => {
+                const input = label.querySelector('input');
+                // Reset styles
+                label.style.borderColor = '#eee';
+                label.style.background = 'transparent';
+
+                if (input.value === correctOption) {
+                    label.style.borderColor = 'var(--success)';
+                    label.style.backgroundColor = '#e8f5e9'; // Light Green
+                } else if (input.checked && input.value !== correctOption) {
+                    label.style.borderColor = 'var(--error)';
+                    label.style.backgroundColor = '#ffebee'; // Light Red
+                }
+            });
+
+            // Scroll to explanation gently
+            explanation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
